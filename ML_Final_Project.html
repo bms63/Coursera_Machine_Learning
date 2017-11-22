@@ -134,7 +134,7 @@ $(document).ready(function () {
 </div>
 <div id="objective" class="section level3">
 <h3>1.2 Objective</h3>
-<p>The goal of your project is to predict the manner in which they did the exercise. This is the “classe” variable in the training set. You may use any of the other variables to predict with. The report contains how I built the model, how you I cross validation, what the expected out of sample error is, and why I made the choices you did. Finally, I will also use my final prediction model to predict 20 different test cases.</p>
+<p>The goal of this project is to predict the manner in which particpants did the exercise. The report contains how I built the model, how you I did cross validation, what the expected out of sample error is, and why I made the choices you did. Finally, I will also use my final prediction model to predict 20 different test cases.</p>
 <pre class="r"><code>#useful packages
 library(caret);library(randomForest);library(rpart);library(rpart.plot);
 library(RColorBrewer);library(knitr)
@@ -147,12 +147,12 @@ knitr::opts_chunk$set(cache = TRUE)</code></pre>
 </div>
 <div id="data" class="section level3">
 <h3>1.3 Data</h3>
-<pre class="r"><code>#Read in train and test sets
+<pre class="r"><code>setwd(&quot;/Users/benStraub/Desktop/Coursera_Machine_Learning&quot;)
+#Read in train and test sets
 #data to build the model
 train &lt;- read.csv(&quot;pml-training.csv&quot;, na.strings=c(&quot;NA&quot;,&quot;#DIV/0!&quot;,&quot;&quot;), header=TRUE)
 #data for the final run
-final_test &lt;- read.csv(&quot;pml-testing.csv&quot;, na.strings=c(&quot;NA&quot;,&quot;#DIV/0!&quot;,&quot;&quot;), header=TRUE)
-#Looking at the amounts of the different classes</code></pre>
+final_test &lt;- read.csv(&quot;pml-testing.csv&quot;, na.strings=c(&quot;NA&quot;,&quot;#DIV/0!&quot;,&quot;&quot;), header=TRUE)</code></pre>
 <p>I have split the provided training data into two data sets, one as a training set (60%) for the model and one as a testing set (40%) to assess the performance of the model. I use the createDataPartitiion() function from the caret package. The data is partitioned by the classe variable, which is the variable that will be used in the prediction.</p>
 <pre class="r"><code>#Split data into testing and training sets
 inTrain &lt;- caret::createDataPartition(y=train$classe, p = 0.60, list=FALSE)
